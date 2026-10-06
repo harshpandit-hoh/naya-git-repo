@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build-and-test:
-    name: CI - Build and Test
+    name: CI - Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -47,25 +47,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build site
-        run: npm run build
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Adjust this to your build folder (e.g., './build' or './public')
+          path: './src'
 
       - name: Deploy to GitHub Pages
         id: deployment
